@@ -1,21 +1,100 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RayCast | Wether App</title>
 </head>
+
 <body>
-    <div>
-        <div class="heroContainer">
-            <div class="formContainer">
-                <form method="get">
+    <div class="Container">
+        <div class="tempAndSearchBarContainer">
+            <div class="searchBarContainer">
+                <form class="form">
                     <input type="text">
-                    <button type="submit">&searhk;</button>
+                    <button type="submit">Icon</button>
                 </form>
             </div>
+            <div class="tempContainer">
+                <div class="imgContainer">
+                    <img src="#" alt="Wether Image">
+                </div>
+                <div class="tempContentContainer">
+                    <p>31&deg;<span class="fcTemp">F/C</span></p>
+                    <p>Mostly Cloudy</p>
+                </div>
+            </div>
+            <div class="dataAndLocationContainer">
+                <div class="date">
+                    <p>21-july-2023</p>
+                    <p>Friday, 12:44 PM</p>
+                    <p>Day</p>
+                </div>
+                <div class="location">
+                    <p>Islamabad</p>
+                </div>
+            </div>
         </div>
-        <div></div>
+        <div class="mainContainer">
+            <div class="headerContainer">
+                <div class="todaysHeader">
+                    <p>Today's Highlights</p>
+                </div>
+                <div class="toggleTempButtonsContainer">
+                    <button>
+                        <span>&deg;C</span>
+                        <span>/</span>
+                        <span>&deg;F</span>
+                    </button>
+                </div>
+            </div>
+            <div class="contentContainer">
+                <div class="box box1">
+                    <p class="boxHeader">Real Feel</p>
+                    <p>temp</p>
+                </div>
+                <div class="box box2">
+                    <p class="boxHeader">Humadity</p>
+                    <p>temp</p>
+                </div>
+                <div class="box box3">
+                    <p class="boxHeader">Wind Status</p>
+                    <p>7.70 <span>km/h</span></p>
+                </div>
+                <div class="box box4">
+                    <p class="boxHeader">Sunrise & Sunset</p>
+                    <div class="sunContainer">
+                        <div class="sunriseContainer">
+                            <div class="sunriseImgContainer">
+                                <img src="#" alt="Sunrise Image">
+                            </div>
+                            <p>4:57 AM</p>
+                        </div>
+                        <div class="sunsetContainer">
+                            <div class="sunsetImgContainer">
+                                <img src="#" alt="Sunset Image">
+                            </div>
+                            <p>6:23 PM</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="box box5">
+                    <p class="boxHeader">UV Index</p>
+                    <p>3</p>
+                    <p>Moderate</p>
+                </div>
+                <div class="box box6">
+                    <p class="boxHeader">Pressure</p>
+                    <p>1000mb</p>
+                </div>
+                <div class="box box7">
+                    <p class="boxHeader">Wind Gusts</p>
+                    <p>346</p>
+                </div>
+            </div>
+        </div>
     </div>
 </body>
+
 </html>
