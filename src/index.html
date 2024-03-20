@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RayCast | Wether App</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 <body>
@@ -12,17 +13,23 @@
         <div class="tempAndSearchBarContainer">
             <div class="searchBarContainer">
                 <form class="form">
-                    <input type="text">
-                    <button type="submit">Icon</button>
+                    <input type="search" placeholder="Search for place...">
+                    <button type="submit"><i class="fa fa-search"></button>
                 </form>
             </div>
             <div class="tempContainer">
                 <div class="imgContainer">
-                    <img src="#" alt="Wether Image">
+                    <img src="" alt="Wether Image">
                 </div>
                 <div class="tempContentContainer">
-                    <p>31&deg;<span class="fcTemp">F/C</span></p>
-                    <p>Mostly Cloudy</p>
+                    <div class="temperatureContainer">
+                        <p class="temperature">31</p>
+                        <div class="tempIconContainer">
+                            &deg;
+                        </div>
+                        <p class="fAndcTemp">C</p>
+                    </div>
+                    <p class="wetherCondition">Mostly Cloudy</p>
                 </div>
             </div>
             <div class="dataAndLocationContainer">
@@ -42,11 +49,8 @@
                     <p>Today's Highlights</p>
                 </div>
                 <div class="toggleTempButtonsContainer">
-                    <button>
-                        <span>&deg;C</span>
-                        <span>/</span>
-                        <span>&deg;F</span>
-                    </button>
+                    <div class="btnCelsius">&deg;C</div>
+                    <div class="btnFahrenheit">&deg;F</div>
                 </div>
             </div>
             <div class="contentContainer">
@@ -87,6 +91,10 @@
                 <div class="box box6">
                     <p class="boxHeader">Pressure</p>
                     <p>1000mb</p>
+                </div>
+                <div class="box box7">
+                    <p class="boxHeader">Wind Gusts</p>
+                    <p>346</p>
                 </div>
                 <div class="box box7">
                     <p class="boxHeader">Wind Gusts</p>

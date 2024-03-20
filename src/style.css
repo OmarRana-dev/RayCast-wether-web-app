@@ -1,0 +1,178 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Times New Roman', Times, serif;
+  color: #333;
+}
+
+.Container {
+  display: flex;
+  height: 100vh;
+}
+
+.tempAndSearchBarContainer {
+  background-color: white;
+  width: 30%;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.searchBarContainer {
+  min-height: 10%;
+}
+
+.form {
+  display: flex;
+}
+
+.form > button {
+  background-color: white;
+  border: none;
+  width: 2rem;
+  border-radius: 0 1rem 1rem 0;
+}
+
+.form > input[type='search'] {
+  background-color: white;
+  display: block;
+  width: calc(100% - 1.5rem);
+  font-size: 1.1rem;
+  font-weight: 500;
+  padding: 0.6rem 0 0.6rem 0.6rem;
+  border-radius: 1rem 0 0 1rem;
+  border: none;
+  box-shadow: none;
+}
+
+.form > input[type='search']:focus {
+  outline: none;
+}
+
+.tempContainer {
+  min-height: 50%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.temperatureContainer {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.tempIconContainer {
+  color: rgb(104, 104, 104);
+  position: absolute;
+  font-size: 3rem;
+  top: 1rem;
+  left: 5.75rem;
+}
+.fAndcTemp {
+  position: absolute;
+  font-size: 4rem;
+  top: 0.6rem;
+  left: 6.7rem;
+}
+
+.temperature {
+  font-size: 7rem;
+}
+
+.imgContainer {
+  height: 60%;
+}
+
+.tempContentContainer {
+  height: 40%;
+}
+
+.wetherCondition {
+  font-size: 1.5rem;
+}
+
+.dataAndLocationContainer {
+  /* background-color: thistle; */
+  min-height: 40%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.date {
+  border-top: 2px solid black;
+  min-height: 60%;
+  /* background-color: cadetblue; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+}
+
+.location {
+  background-color: darkcyan;
+  width: 100%;
+  min-height: 40%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2.5rem;
+  border-radius: 1rem;
+}
+
+/* Start Main Content Contaienr Stylings */
+
+.mainContainer {
+  background-color: white;
+  width: 70%;
+  padding: 2rem;
+}
+
+.headerContainer {
+  background-color: cyan;
+  min-height: 10%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-right: 2rem;
+}
+
+.todaysHeader > p {
+  font-size: 2.4rem;
+}
+
+.toggleTempButtonsContainer {
+  display: flex;
+  justify-content: center;
+  gap: 10%;
+  width: 5rem;
+}
+
+.toggleTempButtonsContainer > div {
+  border-radius: 50%;
+  font-weight: 600;
+  width: 2rem;
+  height: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.btnCelsius {
+  background-color: teal;
+}
+
+/* Content boxs Style */
+.contentContainer {
+  display: grid;
+  grid-template: none / repeat(auto-fit, minmax(min(17rem, 100%), 1fr));
+}
+
+.box {
+  border: 1px solid red;
+}
