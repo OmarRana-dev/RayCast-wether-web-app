@@ -20,6 +20,7 @@
     "prettier": "^3.2.5",
     "source-map-loader": "^5.0.0",
     "style-loader": "^3.3.4",
+    "svg-inline-loader": "^0.8.2",
     "webpack": "^5.90.3",
     "webpack-cli": "^5.1.4",
     "webpack-dev-server": "^5.0.3"

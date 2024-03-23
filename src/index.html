@@ -19,24 +19,21 @@
             </div>
             <div class="tempContainer">
                 <div class="imgContainer">
-                    <img src="" alt="Wether Image">
+                    <img src="" id="currentWetherImg">
                 </div>
                 <div class="tempContentContainer">
                     <div class="temperatureContainer">
-                        <p class="temperature">31</p>
-                        <div class="tempIconContainer">
-                            &deg;
-                        </div>
-                        <p class="fAndcTemp">C</p>
+                        <p class="temperature">37</p>
+                        <span class="tempIconContainer">&deg;</span>
                     </div>
                     <p class="wetherCondition">Mostly Cloudy</p>
                 </div>
             </div>
             <div class="dataAndLocationContainer">
                 <div class="date">
-                    <p>21-july-2023</p>
-                    <p>Friday, 12:44 PM</p>
-                    <p>Day</p>
+                    <p id="fullDate"></p>
+                    <p id="dayWithTime">Friday, 12:44 PM</p>
+                    <p id="dayORnight">Day</p>
                 </div>
                 <div class="location">
                     <p>Islamabad</p>
@@ -49,56 +46,81 @@
                     <p>Today's Highlights</p>
                 </div>
                 <div class="toggleTempButtonsContainer">
-                    <div class="btnCelsius">&deg;C</div>
-                    <div class="btnFahrenheit">&deg;F</div>
+                    <div id="btnCelsius" class="unitsBtn">&deg;C</div>
+                    <div id="btnFahrenheit" class="unitsBtn">&deg;F</div>
                 </div>
             </div>
             <div class="contentContainer">
-                <div class="box box1">
+                <div class="box">
                     <p class="boxHeader">Real Feel</p>
-                    <p>temp</p>
+                    <div class="boxContentContaienr">
+                        <p class="boxContent" id="feelLike"></p>
+                        <span class="symbols">&deg;</span>
+                    </div>
                 </div>
-                <div class="box box2">
+                <div class="box">
                     <p class="boxHeader">Humadity</p>
-                    <p>temp</p>
+                    <div class="boxContentContaienr">
+                        <p class="boxContent" id="humadity"></p>
+                        <span class="symbols">%</span>
+                    </div>
                 </div>
-                <div class="box box3">
+                <div class="box">
                     <p class="boxHeader">Wind Status</p>
-                    <p>7.70 <span>km/h</span></p>
+                    <div class="boxContentContaienr">
+                        <p class="boxContent" id="wind"></p>
+                        <span class="units" id="windSpeedUnit"></span>
+                    </div>
+                    <div class="boxFooter">
+                        <div class="windDirectionImg"></div>
+                        <p class="windDirection"></p>
+                    </div>
                 </div>
-                <div class="box box4">
-                    <p class="boxHeader">Sunrise & Sunset</p>
-                    <div class="sunContainer">
-                        <div class="sunriseContainer">
-                            <div class="sunriseImgContainer">
-                                <img src="#" alt="Sunrise Image">
-                            </div>
-                            <p>4:57 AM</p>
+                <div class="box">
+                    <p class="boxHeader">UV Index</p>
+                    <div class="boxContentContaienr">
+                        <p class="boxContent" id="uvIndex"></p>
+                    </div>
+                    <p class="boxFooter">Moderate</p>
+                </div>
+                <div class="box">
+                    <p class="boxHeader">Pressure</p>
+                    <div class="boxContentContaienr">
+                        <p class="boxContent">1000</p>
+                        <span class="units">mb</span>
+                    </div>
+                </div>
+                <div class="box">
+                    <p class="boxHeader">Wind Gusts</p>
+                    <div class="boxContentContaienr">
+                        <p class="boxContent">345</p>
+                    </div>
+                </div>
+                <div class="box">
+                    <p class="boxHeader">Sun</p>
+                    <div class="">
+                        <div class="sunAndMoonContentContainer">
+                            <div class="sunriseImg sunAndmoonImgContainer"></div>
+                            <p id="sunRiseTime">4:57 AM</p>
                         </div>
-                        <div class="sunsetContainer">
-                            <div class="sunsetImgContainer">
-                                <img src="#" alt="Sunset Image">
-                            </div>
-                            <p>6:23 PM</p>
+                        <div class="sunAndMoonContentContainer">
+                            <div class="sunsetImg sunAndmoonImgContainer"></div>
+                            <p id="sunSetTime">6:23 PM</p>
                         </div>
                     </div>
                 </div>
-                <div class="box box5">
-                    <p class="boxHeader">UV Index</p>
-                    <p>3</p>
-                    <p>Moderate</p>
-                </div>
-                <div class="box box6">
-                    <p class="boxHeader">Pressure</p>
-                    <p>1000mb</p>
-                </div>
-                <div class="box box7">
-                    <p class="boxHeader">Wind Gusts</p>
-                    <p>346</p>
-                </div>
-                <div class="box box7">
-                    <p class="boxHeader">Wind Gusts</p>
-                    <p>346</p>
+                <div class="box">
+                    <p class="boxHeader">Moon</p>
+                    <div class="">
+                        <div class="sunAndMoonContentContainer">
+                            <div class="moonriseImg sunAndmoonImgContainer"></div>
+                            <p id="moonRiseTime">4:57 AM</p>
+                        </div>
+                        <div class="sunAndMoonContentContainer">
+                            <div class="moonsetImg sunAndmoonImgContainer"></div>
+                            <p id="moonSetTime">6:23 PM</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

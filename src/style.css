@@ -1,9 +1,34 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu+Mono:ital,wght@0,400;0,700;1,400;1,700&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,400;1,500&display=swap');
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-family: 'Times New Roman', Times, serif;
   color: #333;
+  /* font-family: 'Ubuntu Mono', monospace; */
+  font-family: 'Ubuntu', sans-serif;
+}
+
+:root {
+  --menu-padding: 0.4rem 0.4rem 0.4rem 2.8rem;
+  --menu-images-position: 10px;
+  --menu-icons-bgsize: 20px;
+
+  --header-bg-color: #00a19d;
+  --Black: #25272c;
+  --Black-75: #25272cbf;
+  --Black-50: #25272c80;
+  --Black-25: #25272c40;
+  --Black-10: #25272c1a;
+  --hover-over-bg-color: #eeeeee;
+  --White: #fafafa;
+
+  --box-Header-font-size: 1.3rem;
+  --box-Content-font-size: 2.8rem;
+  --box-Footer-font-size: 1.15rem;
+
+  --sun-moon-content-font-size: 1.6rem;
 }
 
 .Container {
@@ -57,38 +82,51 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  /* background-color: aquamarine; */
+}
+
+.imgContainer {
+  width: 80%;
+  /* background-color: aqua; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.imgContainer > img {
+  width: 15rem;
+  height: 15rem;
 }
 
 .temperatureContainer {
   display: flex;
   align-items: center;
-  position: relative;
 }
 
 .tempIconContainer {
-  color: rgb(104, 104, 104);
-  position: absolute;
-  font-size: 3rem;
-  top: 1rem;
-  left: 5.75rem;
-}
-.fAndcTemp {
-  position: absolute;
-  font-size: 4rem;
-  top: 0.6rem;
-  left: 6.7rem;
+  color: var(--Black-75);
+  position: relative;
+  font-size: 5rem;
+  top: -0.15rem;
+  left: -0.15rem;
 }
 
 .temperature {
-  font-size: 7rem;
+  font-size: 6rem;
+  padding: 0;
+  margin: 0;
 }
 
 .imgContainer {
-  height: 60%;
+  height: 55%;
 }
 
 .tempContentContainer {
   height: 40%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: end;
 }
 
 .wetherCondition {
@@ -104,14 +142,22 @@
   align-items: center;
 }
 
+/* Data Container */
 .date {
   border-top: 2px solid black;
   min-height: 60%;
-  /* background-color: cadetblue; */
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+}
+
+#fullDate {
+  font-size: 1.2rem;
+}
+
+#dayWithTime,
+#dayORnight {
   font-size: 1.5rem;
 }
 
@@ -127,15 +173,14 @@
 }
 
 /* Start Main Content Contaienr Stylings */
-
 .mainContainer {
-  background-color: white;
+  /* background-color: lightblue; */
   width: 70%;
   padding: 2rem;
 }
 
 .headerContainer {
-  background-color: cyan;
+  /* background-color: cyan; */
   min-height: 10%;
   display: flex;
   justify-content: space-between;
@@ -154,7 +199,7 @@
   width: 5rem;
 }
 
-.toggleTempButtonsContainer > div {
+.unitsBtn {
   border-radius: 50%;
   font-weight: 600;
   width: 2rem;
@@ -162,17 +207,105 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
 }
-.btnCelsius {
+#btnCelsius {
   background-color: teal;
 }
 
 /* Content boxs Style */
 .contentContainer {
+  /* background-color: darkgray; */
   display: grid;
   grid-template: none / repeat(auto-fit, minmax(min(17rem, 100%), 1fr));
+  gap: 2rem;
 }
 
 .box {
-  border: 1px solid red;
+  /* border: 1px solid red; */
+  min-height: 12rem;
+  padding: 1.5rem 1.5rem 1.5rem 3rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.boxHeader {
+  /* background-color: blueviolet; */
+  color: var(--Black-50);
+  min-height: 25%;
+  font-size: var(--box-Header-font-size);
+}
+
+.boxContentContaienr {
+  /* background-color: burlywood; */
+  min-height: 50%;
+  display: flex;
+  align-items: center;
+}
+
+.boxContent {
+  font-size: var(--box-Content-font-size);
+}
+
+.symbols {
+  font-size: 1.5rem;
+  position: relative;
+  top: -0.3rem;
+  color: var(--Black-75);
+}
+
+.units {
+  font-size: 1.5rem;
+  position: relative;
+  bottom: -0.35rem;
+  /* background-color: #00a19d; */
+}
+
+.boxFooter {
+  /* background-color: cadetblue; */
+  min-height: 25%;
+  font-size: var(--box-Footer-font-size);
+  display: flex;
+  align-items: end;
+  gap: 1rem;
+}
+
+.windDirectionImg {
+  background-image: url(./assets/direction.png);
+  background-size: contain;
+  width: 1.6rem;
+  height: 1.6rem;
+}
+
+.sunAndMoonContentContainer {
+  display: flex;
+  align-items: end;
+  gap: 1rem;
+}
+
+.sunAndMoonContentContainer > p {
+  font-size: var(--sun-moon-content-font-size);
+}
+
+.sunriseImg {
+  background-image: url(./assets/sunrise.png);
+}
+
+.sunsetImg {
+  background-image: url(./assets/sunset.png);
+}
+
+.moonriseImg {
+  background-image: url(./assets/moonrise.png);
+}
+
+.moonsetImg {
+  background-image: url(./assets/moonset.png);
+}
+
+.sunAndmoonImgContainer {
+  background-position: center;
+  background-size: contain;
+  width: 2rem;
+  height: 2rem;
 }
