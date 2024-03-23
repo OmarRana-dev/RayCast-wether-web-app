@@ -209,7 +209,8 @@
   align-items: center;
   cursor: pointer;
 }
-#btnCelsius {
+
+.activeUnit {
   background-color: teal;
 }
 
@@ -275,6 +276,14 @@
   background-size: contain;
   width: 1.6rem;
   height: 1.6rem;
+}
+
+.tempUpImg {
+  background-image: url(./assets/increase.png);
+}
+
+.tempDownImg {
+  background-image: url(./assets/temperature.png);
 }
 
 .sunAndMoonContentContainer {

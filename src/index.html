@@ -46,8 +46,8 @@
                     <p>Today's Highlights</p>
                 </div>
                 <div class="toggleTempButtonsContainer">
-                    <div id="btnCelsius" class="unitsBtn">&deg;C</div>
-                    <div id="btnFahrenheit" class="unitsBtn">&deg;F</div>
+                    <div id="btnCelsius" class="unitsBtn ">&deg;C</div>
+                    <div id="btnFahrenheit" class="unitsBtn activeUnit">&deg;F</div>
                 </div>
             </div>
             <div class="contentContainer">
@@ -73,7 +73,7 @@
                     </div>
                     <div class="boxFooter">
                         <div class="windDirectionImg"></div>
-                        <p class="windDirection"></p>
+                        <p id="windDirection"></p>
                     </div>
                 </div>
                 <div class="box">
@@ -86,39 +86,46 @@
                 <div class="box">
                     <p class="boxHeader">Pressure</p>
                     <div class="boxContentContaienr">
-                        <p class="boxContent">1000</p>
-                        <span class="units">mb</span>
+                        <p class="boxContent" id="pressure">1000</p>
+                        <span class="units" id="mbUnit"></span>
                     </div>
                 </div>
                 <div class="box">
-                    <p class="boxHeader">Wind Gusts</p>
-                    <div class="boxContentContaienr">
-                        <p class="boxContent">345</p>
+                    <p class="boxHeader">Temperature History</p>
+                    <div class="">
+                        <div class="sunAndMoonContentContainer">
+                            <div class="tempUpImg sunAndmoonImgContainer"></div>
+                            <p id="tempUp"></p>
+                        </div>
+                        <div class="sunAndMoonContentContainer">
+                            <div class="tempDownImg sunAndmoonImgContainer"></div>
+                            <p id="tempDown"></p>
+                        </div>
                     </div>
                 </div>
                 <div class="box">
-                    <p class="boxHeader">Sun</p>
+                    <p class="boxHeader">Sun Rise&Set</p>
                     <div class="">
                         <div class="sunAndMoonContentContainer">
                             <div class="sunriseImg sunAndmoonImgContainer"></div>
-                            <p id="sunRiseTime">4:57 AM</p>
+                            <p id="sunRiseTime"></p>
                         </div>
                         <div class="sunAndMoonContentContainer">
                             <div class="sunsetImg sunAndmoonImgContainer"></div>
-                            <p id="sunSetTime">6:23 PM</p>
+                            <p id="sunSetTime"></p>
                         </div>
                     </div>
                 </div>
                 <div class="box">
-                    <p class="boxHeader">Moon</p>
+                    <p class="boxHeader">Moon Rise&Set</p>
                     <div class="">
                         <div class="sunAndMoonContentContainer">
                             <div class="moonriseImg sunAndmoonImgContainer"></div>
-                            <p id="moonRiseTime">4:57 AM</p>
+                            <p id="moonRiseTime"></p>
                         </div>
                         <div class="sunAndMoonContentContainer">
                             <div class="moonsetImg sunAndmoonImgContainer"></div>
-                            <p id="moonSetTime">6:23 PM</p>
+                            <p id="moonSetTime"></p>
                         </div>
                     </div>
                 </div>

@@ -1,12 +1,33 @@
 import './style.css';
-import { updateUIwithCelsiusUnit } from './modules/updataUI';
+import {
+  updateUIwithCelsiusUnit,
+  updateUIwithfahrenheitUnit,
+} from './modules/updataUI';
 
+const fahrenheitAndCelsiusUnitBtns = document.querySelectorAll('.unitsBtn');
+
+function updateUI(data) {
+  const activeBtn = document.querySelector('.activeUnit');
+  const unit = activeBtn.textContent;
+  console.log(unit);
+
+  if (unit.includes('C')) {
+    updateUIwithCelsiusUnit(data);
+    console.log(unit.includes('C'), 'Form: C');
+  } else {
+    updateUIwithfahrenheitUnit(data);
+    console.log(unit.includes('F'), 'From: F');
+  }
+}
+
+let location;
 async function makeFetchRequest(url) {
   try {
     const response = await fetch(url);
     const data = await response.json();
-    console.log(data);
-    updateUIwithCelsiusUnit(data);
+
+    location = data.location.name;
+    updateUI(data);
   } catch (error) {
     console.log(error.status);
   }
@@ -21,6 +42,16 @@ function URLmaker(city) {
 
 URLmaker('Hafizabad');
 
+fahrenheitAndCelsiusUnitBtns.forEach((btn) => {
+  btn.addEventListener('click', () => {
+    const activebtn = document.querySelector('.activeUnit');
+    activebtn.classList.remove('activeUnit');
+
+    btn.classList.add('activeUnit');
+    URLmaker(location);
+  });
+});
+
 const formEl = document.querySelector('.form');
 formEl.addEventListener('submit', (e) => {
   e.preventDefault();
@@ -29,8 +60,7 @@ formEl.addEventListener('submit', (e) => {
   const city = input.trim();
 
   if (city) {
+    location = city;
     URLmaker(city);
   }
-
-  // console.log();
 });
