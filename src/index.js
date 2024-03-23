@@ -3,6 +3,7 @@ import {
   updateUIwithCelsiusUnit,
   updateUIwithfahrenheitUnit,
 } from './modules/updataUI';
+import { addToLocalStorage, getToLoclStorage } from './modules/localStorage';
 
 const fahrenheitAndCelsiusUnitBtns = document.querySelectorAll('.unitsBtn');
 
@@ -13,10 +14,8 @@ function updateUI(data) {
 
   if (unit.includes('C')) {
     updateUIwithCelsiusUnit(data);
-    console.log(unit.includes('C'), 'Form: C');
   } else {
     updateUIwithfahrenheitUnit(data);
-    console.log(unit.includes('F'), 'From: F');
   }
 }
 
@@ -27,6 +26,7 @@ async function makeFetchRequest(url) {
     const data = await response.json();
 
     location = data.location.name;
+    addToLocalStorage(data.location);
     updateUI(data);
   } catch (error) {
     console.log(error.status);
@@ -40,7 +40,12 @@ function URLmaker(city) {
   makeFetchRequest(url);
 }
 
-URLmaker('Hafizabad');
+if (getToLoclStorage() === null) {
+  URLmaker('Hafizabad');
+} else {
+  const data = getToLoclStorage();
+  URLmaker(data.name);
+}
 
 fahrenheitAndCelsiusUnitBtns.forEach((btn) => {
   btn.addEventListener('click', () => {

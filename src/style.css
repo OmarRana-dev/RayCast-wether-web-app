@@ -11,11 +11,6 @@
 }
 
 :root {
-  --menu-padding: 0.4rem 0.4rem 0.4rem 2.8rem;
-  --menu-images-position: 10px;
-  --menu-icons-bgsize: 20px;
-
-  --header-bg-color: #00a19d;
   --Black: #25272c;
   --Black-75: #25272cbf;
   --Black-50: #25272c80;
@@ -29,6 +24,7 @@
   --box-Footer-font-size: 1.15rem;
 
   --sun-moon-content-font-size: 1.6rem;
+  --avg-temp-content-font-size: 1.8rem;
 }
 
 .Container {
@@ -286,13 +282,27 @@
   background-image: url(./assets/temperature.png);
 }
 
-.sunAndMoonContentContainer {
+.avg-temp {
+  /* font-size: var(--avg-temp-content-font-size); */
+  font-size: 3rem;
+  /* background-color: aquamarine; */
+}
+
+.temp-deg {
+  /* background-color: yellow; */
+  font-size: larger;
+  position: relative;
+  top: -0.35rem;
+  left: -0.7rem;
+}
+
+.box_DoulContentContainer {
   display: flex;
   align-items: end;
   gap: 1rem;
 }
 
-.sunAndMoonContentContainer > p {
+.box_DoulContentContainer > p {
   font-size: var(--sun-moon-content-font-size);
 }
 
@@ -312,7 +322,7 @@
   background-image: url(./assets/moonset.png);
 }
 
-.sunAndmoonImgContainer {
+.iconContainer {
   background-position: center;
   background-size: contain;
   width: 2rem;
