@@ -2,8 +2,6 @@
 import { format, getHours } from 'date-fns';
 
 const wetherImg = document.querySelector('.imgContainer');
-const activeBtn = document.querySelector('.activeUnit');
-const unit = activeBtn.textContent;
 
 function updateHighlights(data, hours) {
   const imgContainer = document.querySelectorAll('.highlightBoxImgContainer');
@@ -56,6 +54,49 @@ function getTimePeriod(hours) {
   return timePeriod;
 }
 
+function nextDayUpdate(data) {
+  const container = document.querySelectorAll('.DayForecastBox');
+
+  const activeBtn = document.querySelector('.activeUnit');
+  const unit = activeBtn.textContent;
+
+  let num = 0;
+  container.forEach((box) => {
+    const { date, day } = data[num];
+
+    const formatedDate = format(date, 'EEEE');
+    const dayElement = box.firstChild;
+    dayElement.textContent = formatedDate;
+
+    const nextDayWetherIMG = box.lastChild.firstChild.nextSibling;
+    const deleteIMG = document.querySelector('#nextDayWetherImg');
+    nextDayWetherIMG.removeChild(deleteIMG);
+
+    const img = document.createElement('img');
+    img.src = day.condition.icon;
+    img.setAttribute('id', 'nextDayWetherImg');
+
+    nextDayWetherIMG.appendChild(img);
+
+    const dayTempElement = box.lastChild.firstChild.firstChild.firstChild;
+    const highTempElement = box.lastChild.firstChild.lastChild.firstChild;
+    const lowTempElement = highTempElement.nextSibling;
+
+    // console.log();
+    if (unit.includes('C')) {
+      dayTempElement.textContent = day.avgtemp_c;
+      highTempElement.innerHTML = `High:${Math.round(day.maxtemp_c)}&deg;`;
+      lowTempElement.innerHTML = `Low:${Math.round(day.mintemp_c)}&deg;`;
+    } else if (unit.includes('F')) {
+      dayTempElement.textContent = day.avgtemp_f;
+      highTempElement.innerHTML = `High:${Math.round(day.maxtemp_f)}`;
+      lowTempElement.innerHTML = `Low:${Math.round(day.mintemp_f)}&deg;`;
+    }
+
+    num += 1;
+  });
+}
+
 function updateUI(data) {
   const child = document.querySelector('#currentWetherImg');
   wetherImg.removeChild(child);
@@ -97,19 +138,19 @@ function updateUI(data) {
   uvIndex.textContent = data.current.uv;
 
   // Hold data from destructuring
-  const [dataHolder] = data.forecast.forecastday;
+  const [day1, day2, day3] = data.forecast.forecastday;
 
   const sunRise = document.querySelector('#sunRiseTime');
-  sunRise.textContent = dataHolder.astro.sunrise;
+  sunRise.textContent = day1.astro.sunrise;
 
   const sunSet = document.querySelector('#sunSetTime');
-  sunSet.textContent = dataHolder.astro.sunset;
+  sunSet.textContent = day1.astro.sunset;
 
   const moonRise = document.querySelector('#moonRiseTime');
-  moonRise.textContent = dataHolder.astro.moonrise;
+  moonRise.textContent = day1.astro.moonrise;
 
   const moonSet = document.querySelector('#moonSetTime');
-  moonSet.textContent = dataHolder.astro.moonset;
+  moonSet.textContent = day1.astro.moonset;
 
   // All of the Values Who will change with unit
   const temperature = document.querySelector('.temperature');
@@ -121,7 +162,10 @@ function updateUI(data) {
   const tempUP = document.querySelector('#tempUp');
   const tempDown = document.querySelector('#tempDown');
 
-  console.log(unit);
+  const activeBtn = document.querySelector('.activeUnit');
+  const unit = activeBtn.textContent;
+
+  // console.log(unit.includes('C'));
   if (unit.includes('C')) {
     temperature.textContent = data.current.temp_c;
     realFeel.textContent = data.current.feelslike_c;
@@ -129,12 +173,12 @@ function updateUI(data) {
     windUnit.textContent = 'km/h';
     pressure.textContent = data.current.pressure_mb;
     mbUnit.textContent = 'mb';
-    tempUP.textContent = dataHolder.day.maxtemp_c;
-    tempDown.textContent = dataHolder.day.mintemp_c;
+    tempUP.textContent = day1.day.maxtemp_c;
+    tempDown.textContent = day1.day.mintemp_c;
   } else if (unit.includes('F')) {
     temperature.textContent = data.current.temp_f;
-    tempUP.textContent = dataHolder.day.maxtemp_f;
-    tempDown.textContent = dataHolder.day.mintemp_f;
+    tempUP.textContent = day1.day.maxtemp_f;
+    tempDown.textContent = day1.day.mintemp_f;
     pressure.textContent = data.current.pressure_in;
     mbUnit.textContent = 'in';
     windUnit.textContent = 'mp/h';
@@ -142,7 +186,9 @@ function updateUI(data) {
     realFeel.textContent = data.current.feelslike_f;
   }
 
-  updateHighlights(dataHolder.hour, hours);
+  updateHighlights(day1.hour, hours);
+  const nextDaysForecastsHolder = [day2, day3];
+  nextDayUpdate(nextDaysForecastsHolder);
 }
 
 export default updateUI;
