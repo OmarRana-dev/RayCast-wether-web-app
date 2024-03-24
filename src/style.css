@@ -4,20 +4,18 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Times New Roman', Times, serif;
   color: #333;
-  /* font-family: 'Ubuntu Mono', monospace; */
-  font-family: 'Ubuntu', sans-serif;
+  font-family: 'Ubuntu Mono', monospace;
+  /* font-family: 'Ubuntu', sans-serif; */
 }
 
 :root {
   --Black: #25272c;
   --Black-75: #25272cbf;
   --Black-50: #25272c80;
-  --Black-25: #25272c40;
-  --Black-10: #25272c1a;
-  --hover-over-bg-color: #eeeeee;
-  --White: #fafafa;
+
+  --mainHeader-font-size: 2rem;
+  --secondry-Header-font-size: 1.6rem;
 
   --box-Header-font-size: 1.3rem;
   --box-Content-font-size: 2.8rem;
@@ -25,6 +23,8 @@
 
   --sun-moon-content-font-size: 1.6rem;
   --avg-temp-content-font-size: 1.8rem;
+
+  --highligts-bg-color: #eeeeee;
 }
 
 .Container {
@@ -78,12 +78,10 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* background-color: aquamarine; */
 }
 
 .imgContainer {
   width: 80%;
-  /* background-color: aqua; */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -130,7 +128,6 @@
 }
 
 .dataAndLocationContainer {
-  /* background-color: thistle; */
   min-height: 40%;
   width: 100%;
   display: flex;
@@ -146,6 +143,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  gap: 0.3rem;
 }
 
 #fullDate {
@@ -158,25 +156,26 @@
 }
 
 .location {
-  background-color: darkcyan;
+  /* background-color: darkcyan; */
   width: 100%;
   min-height: 40%;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 2.5rem;
+  font-size: 3rem;
   border-radius: 1rem;
 }
 
 /* Start Main Content Contaienr Stylings */
 .mainContainer {
-  /* background-color: lightblue; */
   width: 70%;
+  min-height: 70%;
   padding: 2rem;
+  min-height: 50%;
+  /* background-color: cadetblue; */
 }
 
 .headerContainer {
-  /* background-color: cyan; */
   min-height: 10%;
   display: flex;
   justify-content: space-between;
@@ -185,7 +184,7 @@
 }
 
 .todaysHeader > p {
-  font-size: 2.4rem;
+  font-size: var(--mainHeader-font-size);
 }
 
 .toggleTempButtonsContainer {
@@ -212,32 +211,32 @@
 
 /* Content boxs Style */
 .contentContainer {
-  /* background-color: darkgray; */
+  /* background-color: yellowgreen; */
   display: grid;
   grid-template: none / repeat(auto-fit, minmax(min(17rem, 100%), 1fr));
-  gap: 2rem;
+  gap: 1rem;
 }
 
 .box {
-  /* border: 1px solid red; */
   min-height: 12rem;
-  padding: 1.5rem 1.5rem 1.5rem 3rem;
+  padding: 1.5rem 0 1.5rem 0.5rem;
   display: flex;
   flex-direction: column;
+  /* background-color: teal; */
+  border-radius: 1rem;
 }
 
 .boxHeader {
-  /* background-color: blueviolet; */
   color: var(--Black-50);
   min-height: 25%;
   font-size: var(--box-Header-font-size);
 }
 
 .boxContentContaienr {
-  /* background-color: burlywood; */
   min-height: 50%;
   display: flex;
   align-items: center;
+  padding-left: 0.7rem;
 }
 
 .boxContent {
@@ -255,11 +254,9 @@
   font-size: 1.5rem;
   position: relative;
   bottom: -0.35rem;
-  /* background-color: #00a19d; */
 }
 
 .boxFooter {
-  /* background-color: cadetblue; */
   min-height: 25%;
   font-size: var(--box-Footer-font-size);
   display: flex;
@@ -282,14 +279,7 @@
   background-image: url(./assets/temperature.png);
 }
 
-.avg-temp {
-  /* font-size: var(--avg-temp-content-font-size); */
-  font-size: 3rem;
-  /* background-color: aquamarine; */
-}
-
 .temp-deg {
-  /* background-color: yellow; */
   font-size: larger;
   position: relative;
   top: -0.35rem;
@@ -327,4 +317,92 @@
   background-size: contain;
   width: 2rem;
   height: 2rem;
+}
+
+/* Day Highlights Section Styling */
+.highlightsContainer {
+  /* background-color: turquoise; */
+  display: grid;
+  grid-template: none / repeat(auto-fit, minmax(min(5rem, 100%), 1fr));
+  gap: 1rem;
+}
+
+.hourlyHighlightBox {
+  background-color: var(--highligts-bg-color);
+  border-radius: 0.5rem;
+  padding: 0.8rem 0;
+  min-height: 30%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Next day Section */
+.nextDaysWetherSectionHeader {
+  padding: 1rem 0;
+  font-size: var(--secondry-Header-font-size);
+}
+
+.nextDaysForecasts {
+  display: grid;
+  grid-template: none / repeat(auto-fit, minmax(min(15rem, 100%), 1fr));
+  gap: 1rem 3rem;
+}
+
+.DayForecastBox {
+  background-color: var(--highligts-bg-color);
+  border-radius: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 2rem;
+}
+
+.dateOFnextDay {
+  font-size: var(--box-Header-font-size);
+}
+
+.nextDayTempContentContainer {
+  padding: 0.5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.nextDayContentContainer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.nextDayTempContainer {
+  display: flex;
+}
+.nextdayLowAndHigh {
+  display: flex;
+}
+
+.innerContentContainer {
+  align-self: center;
+}
+
+.tempforNextDay {
+  font-size: 3.8rem;
+}
+.nextDayTempUnit {
+  position: relative;
+  top: 0.3rem;
+  left: -0.2rem;
+  font-size: 2.3rem;
+}
+.wetherTextForNextDay {
+  font-size: 1.15rem;
+}
+
+.nextDayImgContainer {
+  /* background-color: aquamarine; */
+  align-self: end;
+}
+
+.nextDayHighLowFeel {
+  color: var(--Black-75);
 }
