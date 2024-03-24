@@ -10,12 +10,12 @@ async function makeFetchRequest(url) {
     const response = await fetch(url);
     const data = await response.json();
 
-    console.log(data);
+    // console.log(data);
     location = data.location.name;
     addToLocalStorage(data.location);
     updateUI(data);
   } catch (error) {
-    console.log(error.status);
+    throw error(error.status);
   }
 }
 
