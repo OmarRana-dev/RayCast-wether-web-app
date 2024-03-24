@@ -1,6 +1,62 @@
+/* eslint-disable import/no-extraneous-dependencies */
+import { format, getHours } from 'date-fns';
+
 const wetherImg = document.querySelector('.imgContainer');
+const activeBtn = document.querySelector('.activeUnit');
+const unit = activeBtn.textContent;
 
-function updateUIwithCelsiusUnit(data) {
+function updateHighlights(data, hours) {
+  const imgContainer = document.querySelectorAll('.highlightBoxImgContainer');
+
+  let num = 0;
+  if (hours < 13) {
+    let hour = hours;
+    hour += 1;
+    num += hour;
+  } else if (hours >= 13) {
+    num += 14;
+  }
+
+  imgContainer.forEach((element) => {
+    element.removeChild(element.firstElementChild);
+
+    const hourData = data[num];
+    const img = document.createElement('img');
+    img.src = hourData.condition.icon;
+    img.setAttribute('class', 'highlightBoxImg');
+    element.appendChild(img);
+
+    const time = format(hourData.time, 'h:mm a');
+    const timeElement = element.previousSibling;
+    timeElement.textContent = time;
+
+    const temp = element.nextSibling;
+    temp.firstChild.innerHTML = `${Math.round(hourData.temp_c)}&deg;c/${Math.round(hourData.temp_f)}&deg;f`;
+
+    num += 1;
+  });
+}
+
+function getTimePeriod(hours) {
+  let timePeriod;
+  if (hours === 12) {
+    timePeriod = 'Noon';
+  } else if (hours < 12) {
+    timePeriod = 'Morning';
+  } else if (hours === 17) {
+    timePeriod = 'Afternoon';
+  } else if (hours >= 18 && hours < 22) {
+    timePeriod = 'Evening';
+  } else if (hours >= 22 || hours < 5) {
+    timePeriod = 'Night';
+  } else {
+    timePeriod = 'After noon';
+  }
+
+  return timePeriod;
+}
+
+function updateUI(data) {
   const child = document.querySelector('#currentWetherImg');
   wetherImg.removeChild(child);
 
@@ -10,35 +66,29 @@ function updateUIwithCelsiusUnit(data) {
 
   wetherImg.appendChild(img);
 
-  const temperature = document.querySelector('.temperature');
-  temperature.textContent = data.current.temp_c;
-
   const text = document.querySelector('.wetherCondition');
   text.textContent = data.current.condition.text;
 
+  const localTime = data.location.localtime;
+  const hours = getHours(localTime);
+  // console.log(hours);
+
   const fulldate = document.querySelector('#fullDate');
-  fulldate.textContent = '21-july-2024';
+  const formatedDate = format(localTime, 'dd-MMM-yyyy');
+  fulldate.textContent = formatedDate;
 
   const dayWithTime = document.querySelector('#dayWithTime');
-  dayWithTime.textContent = 'Friday, 12:44 PM';
+  const foramtedTimeDate = format(localTime, 'EEEE, h:mm a');
+  dayWithTime.textContent = foramtedTimeDate;
 
   const dayORnight = document.querySelector('#dayORnight');
-  dayORnight.textContent = 'Day';
+  dayORnight.textContent = getTimePeriod(hours);
 
   const location = document.querySelector('.location > p');
   location.textContent = data.location.name;
 
-  const realFeel = document.querySelector('#feelLike');
-  realFeel.textContent = data.current.feelslike_c;
-
   const humadity = document.querySelector('#humadity');
   humadity.textContent = data.current.humidity;
-
-  const windspeed = document.querySelector('#wind');
-  windspeed.textContent = data.current.wind_kph;
-
-  const windUnit = document.querySelector('#windSpeedUnit');
-  windUnit.textContent = 'km/h';
 
   const windDirection = document.querySelector('#windDirection');
   windDirection.textContent = data.current.wind_dir;
@@ -46,20 +96,8 @@ function updateUIwithCelsiusUnit(data) {
   const uvIndex = document.querySelector('#uvIndex');
   uvIndex.textContent = data.current.uv;
 
-  const pressure = document.querySelector('#pressure');
-  pressure.textContent = data.current.pressure_mb;
-
-  const mbUnit = document.querySelector('#mbUnit');
-  mbUnit.textContent = 'mb';
-
   // Hold data from destructuring
   const [dataHolder] = data.forecast.forecastday;
-
-  const tempUP = document.querySelector('#tempUp');
-  tempUP.textContent = dataHolder.day.maxtemp_c;
-
-  const tempDown = document.querySelector('#tempDown');
-  tempDown.textContent = dataHolder.day.mintemp_c;
 
   const sunRise = document.querySelector('#sunRiseTime');
   sunRise.textContent = dataHolder.astro.sunrise;
@@ -72,80 +110,39 @@ function updateUIwithCelsiusUnit(data) {
 
   const moonSet = document.querySelector('#moonSetTime');
   moonSet.textContent = dataHolder.astro.moonset;
-}
 
-function updateUIwithfahrenheitUnit(data) {
-  const child = document.querySelector('#currentWetherImg');
-  wetherImg.removeChild(child);
-
-  const img = document.createElement('img');
-  img.src = data.current.condition.icon;
-  img.setAttribute('id', 'currentWetherImg');
-
-  wetherImg.appendChild(img);
-
+  // All of the Values Who will change with unit
   const temperature = document.querySelector('.temperature');
-  temperature.textContent = data.current.temp_f;
-
-  const text = document.querySelector('.wetherCondition');
-  text.textContent = data.current.condition.text;
-
-  const fulldate = document.querySelector('#fullDate');
-  fulldate.textContent = '21-july-2024';
-
-  const dayWithTime = document.querySelector('#dayWithTime');
-  dayWithTime.textContent = 'Friday, 12:44 PM';
-
-  const dayORnight = document.querySelector('#dayORnight');
-  dayORnight.textContent = 'Day';
-
-  const location = document.querySelector('.location > p');
-  location.textContent = data.location.name;
-
   const realFeel = document.querySelector('#feelLike');
-  realFeel.textContent = data.current.feelslike_f;
-
-  const humadity = document.querySelector('#humadity');
-  humadity.textContent = data.current.humidity;
-
   const windspeed = document.querySelector('#wind');
-  windspeed.textContent = data.current.wind_mph;
-
   const windUnit = document.querySelector('#windSpeedUnit');
-  windUnit.textContent = 'mp/h';
-
-  const windDirection = document.querySelector('#windDirection');
-  windDirection.textContent = data.current.wind_dir;
-
-  const uvIndex = document.querySelector('#uvIndex');
-  uvIndex.textContent = data.current.uv;
-
   const pressure = document.querySelector('#pressure');
-  pressure.textContent = data.current.pressure_in;
-
   const mbUnit = document.querySelector('#mbUnit');
-  mbUnit.textContent = 'in';
-
-  // Hold data from destructuring
-  const [dataHolder] = data.forecast.forecastday;
-
   const tempUP = document.querySelector('#tempUp');
-  tempUP.textContent = dataHolder.day.maxtemp_f;
-
   const tempDown = document.querySelector('#tempDown');
-  tempDown.textContent = dataHolder.day.mintemp_f;
 
-  const sunRise = document.querySelector('#sunRiseTime');
-  sunRise.textContent = dataHolder.astro.sunrise;
+  console.log(unit);
+  if (unit.includes('C')) {
+    temperature.textContent = data.current.temp_c;
+    realFeel.textContent = data.current.feelslike_c;
+    windspeed.textContent = data.current.wind_kph;
+    windUnit.textContent = 'km/h';
+    pressure.textContent = data.current.pressure_mb;
+    mbUnit.textContent = 'mb';
+    tempUP.textContent = dataHolder.day.maxtemp_c;
+    tempDown.textContent = dataHolder.day.mintemp_c;
+  } else if (unit.includes('F')) {
+    temperature.textContent = data.current.temp_f;
+    tempUP.textContent = dataHolder.day.maxtemp_f;
+    tempDown.textContent = dataHolder.day.mintemp_f;
+    pressure.textContent = data.current.pressure_in;
+    mbUnit.textContent = 'in';
+    windUnit.textContent = 'mp/h';
+    windspeed.textContent = data.current.wind_mph;
+    realFeel.textContent = data.current.feelslike_f;
+  }
 
-  const sunSet = document.querySelector('#sunSetTime');
-  sunSet.textContent = dataHolder.astro.sunset;
-
-  const moonRise = document.querySelector('#moonRiseTime');
-  moonRise.textContent = dataHolder.astro.moonrise;
-
-  const moonSet = document.querySelector('#moonSetTime');
-  moonSet.textContent = dataHolder.astro.moonset;
+  updateHighlights(dataHolder.hour, hours);
 }
 
-export { updateUIwithCelsiusUnit, updateUIwithfahrenheitUnit };
+export default updateUI;
