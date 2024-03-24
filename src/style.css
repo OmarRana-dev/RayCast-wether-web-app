@@ -398,6 +398,11 @@
   font-size: 1.15rem;
 }
 
+.nextDayImgContainer {
+  /* background-color: aquamarine; */
+  align-self: end;
+}
+
 .nextDayHighLowFeel {
   color: var(--Black-75);
 }

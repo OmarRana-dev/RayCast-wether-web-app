@@ -62,35 +62,39 @@ function nextDayUpdate(data) {
 
   let num = 0;
   container.forEach((box) => {
-    const { date, day } = data[num];
+    const { date, day, hour } = data[num];
 
     const formatedDate = format(date, 'EEEE');
     const dayElement = box.firstChild;
     dayElement.textContent = formatedDate;
 
-    const nextDayWetherIMG = box.lastChild.firstChild.nextSibling;
-    const deleteIMG = document.querySelector('#nextDayWetherImg');
-    nextDayWetherIMG.removeChild(deleteIMG);
+    const nextDayWetherImg = box.lastChild.firstChild.nextSibling;
+    const deleteIMG = nextDayWetherImg.firstChild;
+    nextDayWetherImg.removeChild(deleteIMG);
 
     const img = document.createElement('img');
     img.src = day.condition.icon;
-    img.setAttribute('id', 'nextDayWetherImg');
 
-    nextDayWetherIMG.appendChild(img);
+    nextDayWetherImg.appendChild(img);
+
+    const wetherFeelText = box.lastChild.lastChild.firstChild;
+    wetherFeelText.textContent = day.condition.text;
 
     const dayTempElement = box.lastChild.firstChild.firstChild.firstChild;
     const highTempElement = box.lastChild.firstChild.lastChild.firstChild;
     const lowTempElement = highTempElement.nextSibling;
+    const wetherFeelLike = box.lastChild.lastChild.lastChild;
 
-    // console.log();
     if (unit.includes('C')) {
       dayTempElement.textContent = day.avgtemp_c;
       highTempElement.innerHTML = `High:${Math.round(day.maxtemp_c)}&deg;`;
       lowTempElement.innerHTML = `Low:${Math.round(day.mintemp_c)}&deg;`;
+      wetherFeelLike.innerHTML = `Feel Like:${hour[9].feelslike_c}`;
     } else if (unit.includes('F')) {
       dayTempElement.textContent = day.avgtemp_f;
       highTempElement.innerHTML = `High:${Math.round(day.maxtemp_f)}`;
       lowTempElement.innerHTML = `Low:${Math.round(day.mintemp_f)}&deg;`;
+      wetherFeelLike.innerHTML = `Feel Like:${hour[9].feelslike_f}`;
     }
 
     num += 1;
